@@ -1,13 +1,13 @@
 # 🧮 Python Submission Grader CLI
 
-A simple command-line interface (CLI) tool for managing and grading student submissions.
-This tool supports downloading submissions from Google Drive, running auto-grading tests, and clearing folders.
+A simple command-line interface (CLI) tool for managing and grading student submissions and or functions in general.
+This tool supports downloading submissions from Google Drive, running auto-grading tests, and clearing the submission folder.
 
 ---
 
 ## 🚀 Features
 
-- 🧾 Grade Python submissions automatically
+- 🧾 Grade Python functions automatically
 - 🔽 Download folders directly from Google Drive
 - 🧹 Clear the submissions folder safely
 - ⚙️ Configurable `config.json` (stores folder paths and default links)
@@ -22,4 +22,10 @@ This tool supports downloading submissions from Google Drive, running auto-gradi
 
 ```bash
 pip install gdown
+```
+---
 
+## ⚙️ Usage
+
+1. You may setup the "tests.json" to test whichever functions you need by putting in the function name, input, and expected output.
+2. You also may put in a default download link via "config.json" to fasten up any processes of downloading.
