@@ -1,6 +1,7 @@
 import importlib.util
 import os
 import json
+from time import perf_counter as timer
 
 SUBMISSIONS_FOLDER = "submissions"
 TEST_FILE = "tests.json"
@@ -54,12 +55,15 @@ def grade_module(module):
             continue
 
         try:
+            start_case = timer()
             output = func(*args)
+            duration = timer() - start_case
+
             if output == expected:
                 score += 1
-                results.append((func_name, "✅ PASS"))
+                results.append((func_name, f"✅ PASS ({duration:.6f}s)"))
             else:
-                results.append((func_name, f"❌ FAIL (got {output}, expected {expected})"))
+                results.append((func_name, f"❌ FAIL ({duration:.6f}s, got {output}, expected {expected})"))
         except Exception as e:
             results.append((func_name, f"⚠️ ERROR: {e}"))
 
@@ -83,13 +87,15 @@ def grade_selected(selected):
             print(f"\n❌ Could not load {file}: {e}")
             continue
 
+        start_time = timer()
         score, results = grade_module(module)
+        elapsed = timer() - start_time
 
-        print(f"\n=== Results for {file} ===")
+        print(f"\nResults for {file}: ")
         for func, result in results:
             print(f"  {func:<10}: {result}")
         print(f"  => Final Score: {score}/{len(load_tests())}")
-        print("=" * 40)
+        print(f"  🕒 Total Time: {elapsed:.6f} seconds")
 
     input("\nPress Enter to return to menu...")
 
