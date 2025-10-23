@@ -2,7 +2,7 @@ import tools
 
 commands = {}
 config = tools.configManager.load_config()
-VERSION = config.get("version", "0.0.0")
+VERSION = "1.1.0
 
 def command(name, desc=""):
     def decorator(func):
